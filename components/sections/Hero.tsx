@@ -165,8 +165,7 @@ const Hero = forwardRef<HTMLVideoElement, HeroProps>(function Hero({ onVideoRef 
                 <div ref={bodyRef} className="flex flex-col gap-7 max-w-[380px] self-end pb-2">
                     <p className="font-body font-light text-[15px] leading-[1.7] text-soft-white/85 flex items-start gap-2">
                         <SparkleIcon className="w-4 h-4 text-rose-pink mt-1 flex-shrink-0" />
-                        A love story crafted just for you. Every scroll is a moment, every
-                        word a memory — at your own pace.
+                        I made this just for you. Every scroll is a memory, every word is something I felt with you. Read it slowly, just like I love you.
                     </p>
 
                     {/* CTA Button */}

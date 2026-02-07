@@ -193,7 +193,7 @@ export default function Finale() {
                 className="font-display font-light text-soft-pink text-center mt-4 relative z-10 tracking-[0.3em]"
                 style={{ fontSize: "clamp(24px, 5vw, 48px)" }}
             >
-                PARLEEN
+                PARLEEN&lt;3
             </p>
 
             {/* Decorative hearts */}
@@ -202,6 +202,24 @@ export default function Finale() {
                 <HeartIcon className="w-10 h-10 text-rose-pink" />
                 <HeartIcon className="w-7 h-7 text-soft-pink" />
             </div>
+
+            {/* Watch it again button */}
+            <button
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-full
+                           bg-[rgba(255,107,157,0.25)] backdrop-blur-[12px]
+                           border border-white/[0.15] text-soft-white
+                           font-body text-xs font-semibold tracking-[2px] uppercase
+                           transition-all duration-300 mt-10 relative z-10
+                           hover:bg-[rgba(255,107,157,0.4)] hover:-translate-y-0.5
+                           hover:shadow-[0_12px_40px_rgba(255,107,157,0.35)]"
+            >
+                <svg className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 19V5M5 12l7-7 7 7" />
+                </svg>
+                Watch it again
+                <HeartIcon className="w-4 h-4 text-rose-pink" />
+            </button>
 
             {/* Floating hearts decoration */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
