@@ -110,7 +110,7 @@ const Hero = forwardRef<HTMLVideoElement, HeroProps>(function Hero({ onVideoRef 
                 loop
                 playsInline
                 className="absolute inset-0 w-full h-full object-cover z-0"
-                poster="/images/hero-poster.jpg"
+                poster="/images/hero-poster.png"
             >
                 <source src="/videos/hero-background.mp4" type="video/mp4" />
             </video>
