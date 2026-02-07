@@ -181,8 +181,7 @@ export default function Memories({ memories = defaultMemories }: MemoriesProps) 
                     {allMemories.map((memory, index) => (
                         <div
                             key={index}
-                            className="memory-card relative h-full rounded-2xl overflow-hidden flex-shrink-0
-                                       transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group shadow-lg"
+                            className="memory-card relative h-full rounded-2xl overflow-hidden flex-shrink-0 transition-all duration-500 ease-out group shadow-lg"
                             style={{
                                 width: isMobile ? "85vw" : "100px",
                                 minWidth: isMobile ? "85vw" : "100px",
@@ -201,15 +200,17 @@ export default function Memories({ memories = defaultMemories }: MemoriesProps) 
                             }}
                         >
                             {/* Background Image / Video */}
-                            <div className="absolute inset-0 w-full h-full">
+                            <div className="absolute inset-0 w-full h-full z-0">
                                 {memory.type === 'video' ? (
                                     <video
                                         src={memory.src}
                                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                                        style={{ backgroundColor: '#2D1B2E' }}
                                         autoPlay
                                         muted
                                         loop
                                         playsInline
+                                        preload="auto"
                                     />
                                 ) : (
                                     <Image
@@ -229,15 +230,15 @@ export default function Memories({ memories = defaultMemories }: MemoriesProps) 
                                 style={{
                                     background: `linear-gradient(
                                         to top,
-                                        rgba(45, 27, 46, 0.9) 0%,
-                                        rgba(139, 10, 80, 0.3) 50%,
-                                        transparent 100%
+                                        rgba(45, 27, 46, 0.6) 0%,
+                                        rgba(139, 10, 80, 0.1) 30%,
+                                        transparent 60%
                                     )`,
                                 }}
                             />
 
                             {/* Hover Overlay */}
-                            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300 z-[2]" />
+                            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300 z-[2]" />
 
                             {/* Caption Content */}
                             <div className="absolute bottom-0 left-0 w-full p-6 z-[3] flex flex-col justify-end h-full pointer-events-none">

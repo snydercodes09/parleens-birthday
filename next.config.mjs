@@ -3,12 +3,8 @@ const nextConfig = {
     images: {
         remotePatterns: [],
     },
-    // Allow missing image files during development
     typescript: {
         ignoreBuildErrors: false,
-    },
-    eslint: {
-        ignoreDuringBuilds: false,
     },
 };
 

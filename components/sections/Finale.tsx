@@ -206,13 +206,20 @@ export default function Finale() {
             {/* Watch it again button */}
             <button
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-full
-                           bg-[rgba(255,107,157,0.25)] backdrop-blur-[12px]
-                           border border-white/[0.15] text-soft-white
-                           font-body text-xs font-semibold tracking-[2px] uppercase
-                           transition-all duration-300 mt-10 relative z-10
-                           hover:bg-[rgba(255,107,157,0.4)] hover:-translate-y-0.5
-                           hover:shadow-[0_12px_40px_rgba(255,107,157,0.35)]"
+                className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-full backdrop-blur-sm border text-soft-white font-body text-xs font-semibold uppercase transition-all duration-300 mt-10 relative z-10 hover:-translate-y-0.5"
+                style={{
+                    background: 'rgba(255,107,157,0.25)',
+                    borderColor: 'rgba(255,255,255,0.15)',
+                    letterSpacing: '2px',
+                }}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(255,107,157,0.4)';
+                    e.currentTarget.style.boxShadow = '0 12px 40px rgba(255,107,157,0.35)';
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(255,107,157,0.25)';
+                    e.currentTarget.style.boxShadow = 'none';
+                }}
             >
                 <svg className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M12 19V5M5 12l7-7 7 7" />

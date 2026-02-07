@@ -171,18 +171,26 @@ const Hero = forwardRef<HTMLVideoElement, HeroProps>(function Hero({ onVideoRef 
                     {/* CTA Button */}
                     <button
                         onClick={scrollToNextSection}
-                        className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-full
-                       bg-[rgba(255,107,157,0.25)] backdrop-blur-[12px]
-                       border border-white/[0.15] text-soft-white
-                       font-body text-xs font-semibold tracking-[2px] uppercase
-                       transition-all duration-300 w-fit
-                       hover:bg-[rgba(255,107,157,0.4)] hover:-translate-y-0.5
-                       hover:shadow-[0_6px_24px_rgba(255,107,157,0.3)]"
+                        className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-full backdrop-blur-sm border text-soft-white font-body text-xs font-semibold uppercase transition-all duration-300 w-fit hover:-translate-y-0.5"
+                        style={{
+                            background: 'rgba(255,107,157,0.25)',
+                            borderColor: 'rgba(255,255,255,0.15)',
+                            letterSpacing: '2px',
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.background = 'rgba(255,107,157,0.4)';
+                            e.currentTarget.style.boxShadow = '0 6px 24px rgba(255,107,157,0.3)';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'rgba(255,107,157,0.25)';
+                            e.currentTarget.style.boxShadow = 'none';
+                        }}
                     >
                         Begin Our Story
-                        <span className="flex items-center justify-center w-[18px] h-[18px] rounded-full 
-                         bg-white/15 transition-transform duration-300
-                         group-hover:translate-x-0.5">
+                        <span
+                            className="flex items-center justify-center w-[18px] h-[18px] rounded-full transition-transform duration-300 group-hover:translate-x-0.5"
+                            style={{ background: 'rgba(255,255,255,0.15)' }}
+                        >
                             <HeartIcon className="w-3 h-3 text-rose-pink" />
                         </span>
                     </button>
