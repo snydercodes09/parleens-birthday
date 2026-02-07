@@ -36,6 +36,7 @@ const defaultMemories: Memory[] = [
     { type: 'image', src: "/images/memory15.jpg", caption: "Our beautiful journey", alt: "Memory 15" },
     { type: 'image', src: "/images/memory16.jpg", caption: "You are my sunshine", alt: "Memory 16" },
     { type: 'image', src: "/images/memory17.jpg", caption: "Love at first sight ❤️", alt: "Memory 17" },
+    { type: 'video', src: "/videos/memory18.mp4", caption: "Our endless love story 💕", alt: "Memory 18" },
 ];
 
 // SVG Icons
@@ -45,6 +46,42 @@ const CameraIcon = ({ className = "w-8 h-8" }: { className?: string }) => (
         <circle cx="12" cy="13" r="4" />
     </svg>
 );
+
+const VideoItem = ({ src }: { src: string }) => {
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        const playVideo = () => {
+            video.play().catch(() => { });
+        };
+        playVideo();
+
+        const onPause = () => {
+            if (!video.paused) playVideo();
+        };
+
+        video.addEventListener('pause', onPause);
+        return () => video.removeEventListener('pause', onPause);
+    }, []);
+
+    return (
+        <video
+            ref={videoRef}
+            src={src}
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 relative z-0"
+            style={{ backgroundColor: '#2D1B2E' }}
+            poster="/images/hero-poster.jpg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+        />
+    );
+};
 
 export default function Memories({ memories = defaultMemories }: MemoriesProps) {
     const sectionRef = useRef<HTMLElement>(null);
@@ -172,6 +209,8 @@ export default function Memories({ memories = defaultMemories }: MemoriesProps) 
                 onPointerMove={handlePointerMove}
                 onPointerUp={handlePointerUp}
                 onPointerLeave={handlePointerUp}
+                onMouseEnter={() => animationRef.current?.pause()}
+                onMouseLeave={() => animationRef.current?.play()}
                 style={{
                     touchAction: "none",
                 }}
@@ -202,16 +241,7 @@ export default function Memories({ memories = defaultMemories }: MemoriesProps) 
                             {/* Background Image / Video */}
                             <div className="absolute inset-0 w-full h-full z-0">
                                 {memory.type === 'video' ? (
-                                    <video
-                                        src={memory.src}
-                                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                                        style={{ backgroundColor: '#2D1B2E' }}
-                                        autoPlay
-                                        muted
-                                        loop
-                                        playsInline
-                                        preload="auto"
-                                    />
+                                    <VideoItem src={memory.src} />
                                 ) : (
                                     <Image
                                         src={memory.src}
@@ -260,7 +290,7 @@ export default function Memories({ memories = defaultMemories }: MemoriesProps) 
                 </div>
             </div>
 
-            {/* Marquee Animation Styles */}
+            {/* Scrollbar Hide Styles */}
             <style jsx global>{`
                 .scrollbar-hide::-webkit-scrollbar {
                     display: none;
@@ -268,24 +298,6 @@ export default function Memories({ memories = defaultMemories }: MemoriesProps) 
                 .scrollbar-hide {
                     -ms-overflow-style: none;
                     scrollbar-width: none;
-                }
-                
-                @keyframes marquee {
-                    0% {
-                        transform: translateX(0);
-                    }
-                    100% {
-                        transform: translateX(-33.333%);
-                    }
-                }
-                
-                .animate-marquee {
-                    animation: marquee 60s linear infinite;
-                }
-                
-                .memories-track.paused .animate-marquee,
-                .memories-track:hover .animate-marquee {
-                    animation-play-state: paused;
                 }
             `}</style>
 
